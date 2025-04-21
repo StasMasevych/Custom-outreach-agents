@@ -91,10 +91,12 @@ lead_profiling_task = Task(
         "Utilize all available data sources "
         "to compile a detailed profile, "
         "focusing on key decision-makers, recent business "
-        "tell about decision-makers taking data from LinkedIn and other sources. "
-        "The data on key decision makers shall include their names, titles, experience, contact details from LinkedIn, "
         "developments, and potential needs "
         "that align with our offerings. "
+        "The data on key decision makers shall include "
+        "names, titles, experience, contact details from LinkedIn. "
+        "The data on recent business developments, and potential needs shall include "
+        "data from LinkedIn posts of decision-makers and data from {lead_name} website."
         "This task is crucial for tailoring "
         "our engagement strategy effectively.\n"
         "Don't make assumptions and "
@@ -112,14 +114,48 @@ lead_profiling_task = Task(
     agent=sales_rep_agent,
 )
 
+
+
+# personalized_outreach_task = Task(
+#     description=(
+#         "Using the insights gathered from "
+#         "the lead profiling report on {lead_name}, "
+#         "craft a personalized outreach campaign "
+#         "aimed at {key_decision_maker}, "
+#         "the {position} of {lead_name}. "
+#         "The campaign should address their recent {milestone} "
+#         "and how our solutions can support their goals. "
+#         "Your communication must resonate "
+#         "with {lead_name}'s company culture and values, "
+#         "demonstrating a deep understanding of "
+#         "their business and needs.\n"
+#         "Don't make assumptions and only "
+#         "use information you absolutely sure about."
+#     ),
+#     expected_output=(
+#         "A series of personalized email drafts "
+#         "tailored to {lead_name}, "
+#         "specifically targeting {key_decision_maker}."
+#         "Each draft should include "
+#         "a compelling narrative that connects our solutions "
+#         "with their recent achievements and future goals. "
+#         "Ensure the tone is engaging, professional, "
+#         "and aligned with {lead_name}'s corporate identity."
+#     ),
+#     tools=[sentiment_analysis_tool, search_tool],
+#     agent=lead_sales_rep_agent,
+# )
+
+# task with 2 inputs
+
 personalized_outreach_task = Task(
     description=(
         "Using the insights gathered from "
         "the lead profiling report on {lead_name}, "
         "craft a personalized outreach campaign "
-        "aimed at {key_decision_maker}, "
-        "the {position} of {lead_name}. "
-        "The campaign should address their recent {milestone} "
+        "aimed at key decision-makers "
+        "the position of {lead_name}. "
+        "The campaign should address their recent milestone "
         "and how our solutions can support their goals. "
         "Your communication must resonate "
         "with {lead_name}'s company culture and values, "
@@ -131,7 +167,7 @@ personalized_outreach_task = Task(
     expected_output=(
         "A series of personalized email drafts "
         "tailored to {lead_name}, "
-        "specifically targeting {key_decision_maker}."
+        "specifically targeting key decision-makers."
         "Each draft should include "
         "a compelling narrative that connects our solutions "
         "with their recent achievements and future goals. "
@@ -157,12 +193,26 @@ crew = Crew(
 
 # Run crew
 
+# inputs = {
+#     "lead_name": "Voltage Group",
+#     "industry": "Renewable Energy Engineering",
+#     "key_decision_maker": "Dmytro Nechypurenko",
+#     "position": "CBDO",
+#     "milestone": "recent BESS projects development in Poland"
+# }
+
+
+# inputs = {
+#     "lead_name": "DeepLearningAI",
+#     "industry": "Online Learning Platform",
+#     "key_decision_maker": "Andrew Ng",
+#     "position": "CEO",
+#     "milestone": "product launch"
+# }
+
 inputs = {
-    "lead_name": "Voltage Group",
+    "lead_name": "DRI (DTEK Renewables International)",
     "industry": "Renewable Energy Engineering",
-    "key_decision_maker": "Dmytro Nechypurenko",
-    "position": "CBDO",
-    "milestone": "recent BESS projects development in Poland"
 }
 
 result = crew.kickoff(inputs=inputs)
