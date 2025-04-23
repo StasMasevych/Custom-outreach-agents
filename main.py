@@ -20,6 +20,12 @@ openai_api_key = get_openai_api_key()
 os.environ["OPENAI_MODEL_NAME"] = 'gpt-4-turbo'
 os.environ["SERPER_API_KEY"] = get_serper_api_key()
 
+# Create tools
+
+directory_read_tool = DirectoryReadTool(directory='./instructions')
+file_read_tool = FileReadTool()
+search_tool = SerperDevTool()
+
 # Create agents
 
 sales_rep_agent = Agent(
@@ -60,14 +66,6 @@ lead_sales_rep_agent = Agent(
 )
 
 
-
-# Create tools
-
-directory_read_tool = DirectoryReadTool(directory='./instructions')
-file_read_tool = FileReadTool()
-search_tool = SerperDevTool()
-
-
 # Custom tools
 class SentimentAnalysisTool(BaseTool):
     name: str ="Sentiment Analysis Tool"
@@ -86,7 +84,7 @@ sentiment_analysis_tool = SentimentAnalysisTool()
 lead_profiling_task = Task(
     description=(
         "Conduct an in-depth analysis of {lead_name}, "
-        "a company in the {industry} sector "
+        "a company in the {industry} sector of Ukraine "
         "that recently showed interest in our solutions. "
         "Utilize all available data sources "
         "to compile a detailed profile, "
@@ -113,7 +111,6 @@ lead_profiling_task = Task(
     tools=[directory_read_tool, file_read_tool, search_tool],
     agent=sales_rep_agent,
 )
-
 
 
 # personalized_outreach_task = Task(
@@ -210,8 +207,13 @@ crew = Crew(
 #     "milestone": "product launch"
 # }
 
+# inputs = {
+#     "lead_name": "DRI (DTEK Renewables International)",
+#     "industry": "Renewable Energy Engineering",
+# }
+
 inputs = {
-    "lead_name": "DRI (DTEK Renewables International)",
+    "lead_name": "Voltage Group",
     "industry": "Renewable Energy Engineering",
 }
 
