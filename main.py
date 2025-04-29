@@ -33,7 +33,7 @@ sales_rep_agent = Agent(
     goal="Identify high-value leads that match "
          "our ideal customer profile",
     backstory=(
-        "As a part of the dynamic sales team at CrewAI, "
+        "As a part of the dynamic sales team at Blymyer Engineers Inc., "
         "your mission is to scour "
         "the digital landscape for potential leads. "
         "Armed with cutting-edge tools "
@@ -51,7 +51,7 @@ lead_sales_rep_agent = Agent(
     role="Lead Sales Representative",
     goal="Nurture leads with personalized, compelling communications",
     backstory=(
-        "Within the vibrant ecosystem of CrewAI's sales department, "
+        "Within the vibrant ecosystem of Blymyer Engineers Inc.'s sales department, "
         "you stand out as the bridge between potential clients "
         "and the solutions they need."
         "By creating engaging, personalized messages, "
@@ -212,9 +212,14 @@ crew = Crew(
 #     "industry": "Renewable Energy Engineering",
 # }
 
+# inputs = {
+#     "lead_name": "Voltage Group",
+#     "industry": "Renewable Energy Engineering",
+# }
+
 inputs = {
-    "lead_name": "Voltage Group",
-    "industry": "Renewable Energy Engineering",
+    "lead_name": "Enlight Renewable Energy Ltd (Clenera Holdings LLC)",
+    "industry": "Renewable Energy",
 }
 
 result = crew.kickoff(inputs=inputs)
